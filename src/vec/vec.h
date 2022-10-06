@@ -166,6 +166,8 @@ void    normalizef4(fvec4_t *v);
 fvec3_t f3matmult(m3x3_t m, fvec3_t v);
 fvec4_t f4matmult(m4x4_t m, fvec4_t v);
 
+fvec3_t project(fvec3_t v, m4x4_t pm);
+
 void fvec2_print(fvec2_t v);
 void fvec3_print(fvec3_t v);
 void fvec4_print(fvec4_t v);

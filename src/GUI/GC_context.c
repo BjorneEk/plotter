@@ -119,13 +119,14 @@ void GC_draw(GC_context * self)
 void GC_destroy(GC_context * self)
 {
   GC_node * tmp;
+  i32_t i;
+
   if(self->components != NULL) {
-    tmp = self->components;
-    while(tmp != NULL && self->components != NULL) {
-      self->components = self->components->next;
-      GC_destroy_component(tmp->c);
-      free(tmp);
-      tmp = self->components;
+    for(i = 0; i < self->count; i++) {
+      tmp = self->components->next;
+      GC_destroy_component(self->components->c);
+      free(self->components);
+      self->components = tmp;
     }
   }
 }

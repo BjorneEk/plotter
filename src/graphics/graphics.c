@@ -10,19 +10,35 @@
 #include "graphics.h"
 
 
- void fill_circle(SDL_Renderer* rndr, color_t c, i32_t _x, i32_t _y, i32_t rad) {
-   i32_t i, j, x, y;
+void fill_circle(SDL_Renderer* rndr, color_t c, i32_t _x, i32_t _y, i32_t rad) {
+  i32_t i, j, x, y;
 
-   for(i = 0; i < (2*rad); i++) {
-     for(j = 0; j < (2*rad); j++) {
-       x = (i-rad) * (i-rad);
-       y = (j-rad) * (j-rad);
-       if ((x + y) <= (rad*rad)){
-         SET_PIXEL(rndr, c, _x+(i-rad), _y+(j-rad));
-       }
-     }
-   }
- }
+  for(i = 0; i < (2*rad); i++) {
+    for(j = 0; j < (2*rad); j++) {
+      x = (i-rad) * (i-rad);
+      y = (j-rad) * (j-rad);
+      if ((x + y) <= (rad*rad)){
+        SET_PIXEL(rndr, c, _x+(i-rad), _y+(j-rad));
+      }
+    }
+  }
+}
+
+void fill_sphere(SDL_Renderer* rndr, color_t c, i32_t _x, i32_t _y, i32_t rad) {
+  i32_t i, j;
+  f64_t x, y, len;
+
+  for(i = 0; i < (2*rad); i++) {
+    for(j = 0; j < (2*rad); j++) {
+      x = (i-rad);
+      y = (j-rad);
+      if ((x*x + y*y) <= (rad*rad)){
+        len = f2len(FVEC2(x, y));
+        SET_PIXEL(rndr, COLOR_SCALE(c, 1.0-len/(f64_t)rad), _x+x, _y+y);
+      }
+    }
+  }
+}
 
 void draw_xyz(SDL_Renderer* rndr, fvec3_t _O, fvec3_t _X, fvec3_t _Y, fvec3_t _Z, fvec3_t pos, f64_t scale)
 {

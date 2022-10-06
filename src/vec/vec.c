@@ -56,6 +56,23 @@ fvec3_t f3matmult(m3x3_t m, fvec3_t v)
                (m.m[6] * v.x) + (m.m[7] * v.y) + (m.m[8] * v.z));
 }
 
+
+fvec3_t project(fvec3_t v, m4x4_t m) {
+  fvec3_t res;
+  f64_t w;
+  res.x   = (v.x * m.m[0])  + (v.y * m.m[1])  + (v.z * m.m[2])  + m.m[3];
+  res.y   = (v.x * m.m[4])  + (v.y * m.m[5])  + (v.z * m.m[6])  + m.m[7];
+  res.z   = (v.x * m.m[8])  + (v.y * m.m[9])  + (v.z * m.m[10]) + m.m[11];
+  w       = (v.x * m.m[12]) + (v.y * m.m[13]) + (v.z * m.m[14]) + m.m[15];
+  if (w != 0) {
+    res.x /= w;
+    res.y /= w;
+    res.z /= w;
+  }
+  return res;
+}
+
+
 void fvec2_print(fvec2_t v)
 {
   printf("[%3f, %3f]\n", v.x, v.y);

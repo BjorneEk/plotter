@@ -30,4 +30,6 @@ void fill_circle(SDL_Renderer* rndr, color_t c, i32_t _x, i32_t _y, i32_t rad);
 
 void draw_xyz(SDL_Renderer* rndr, fvec3_t _O, fvec3_t _X, fvec3_t _Y, fvec3_t _Z, fvec3_t pos, f64_t scale);
 
+void fill_sphere(SDL_Renderer* rndr, color_t c, i32_t _x, i32_t _y, i32_t rad);
+
 #endif /* _GRAPHICS_H_ */

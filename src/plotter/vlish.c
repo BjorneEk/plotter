@@ -65,3 +65,16 @@ void plot_vlist(SDL_Renderer * rndr, vlist_t vl, f64_t scale, fvec3_t pos, i32_t
     fill_circle(rndr, c, v.x, v.y, psize);
   }
 }
+
+void plot_vlist_perspective(SDL_Renderer * rndr, vlist_t vl,
+    f64_t scale, fvec3_t pos, i32_t psize, color_t c)
+{
+  i32_t i;
+  fvec3_t v;
+  for(i = 0; i < vl.length; i++) {
+    v = fvec3Sop(vl.vecs[i], scale, *);
+
+    vec3opR(v, pos, +=);
+    fill_sphere(rndr, c, v.x, v.y, psize);
+  }
+}

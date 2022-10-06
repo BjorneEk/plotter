@@ -166,7 +166,6 @@ void text_input_listener_func(GC_event evt, void* cmp)
   GC_component * c;
   i32_t len;
   c = (GC_component *)cmp;
-  printf("text: %s\n", evt.evt.text.text);
   if (!c->focused) return;
   if ((c->text.length+1) > GC_MAX_TEXT_LENGTH) return;
   len = strlen(evt.evt.text.text);
@@ -405,15 +404,18 @@ void GC_draw_component(SDL_Renderer * rndr, GC_component * c)
 
 void GC_destroy_component(GC_component * c)
 {
+  i32_t i;
+  GC_lnode * tmp;
+
   if (c->text.str != NULL) free(c->text.str);
   if (c->listeners != NULL) {
-    GC_lnode * tmp;
 
     tmp = c->listeners;
-    while(tmp != NULL && c->listeners != NULL) {
-      c->listeners = c->listeners->next;
-      free(tmp);
-      tmp = c->listeners;
+
+    for(i = 0; i < c->listener_count; i++) {
+      tmp = c->listeners->next;
+      free(c->listeners);
+      c->listeners = tmp;
     }
   }
 }

@@ -3,7 +3,7 @@ TARGET = plotter
 CC = gcc
 SOURCE_DIR = src
 INCLUDE_DIR = $(SOURCE_DIR)/*/
-CFLAGS = -I$(INCLUDE_DIR) -F /Library/Frameworks -I$(SOURCE_DIR)/
+CFLAGS = -I$(INCLUDE_DIR) -F /Library/Frameworks -I$(SOURCE_DIR)/ -g
 LIBS = -framework SDL2
 
 C_SOURCES = $(wildcard src/*/*.c src/*.c *.c )
