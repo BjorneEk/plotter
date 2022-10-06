@@ -29,9 +29,9 @@ $ ./plotter --help
 ## **Input format**
 
 the format for the input file is floats separated by a delimitor. The default delimitor is ```,```
-and spaces between entries are ignored, so ```a, b, c```, ```a,b,c``` and ```a, b ,c``` are allowed. 
+and spaces between entries are ignored, so ```a, b, c```, ```a,b,c``` and ```a, b ,c``` are allowed.
 The values are in ```X, Y, Z``` order, and files ending with an incomplete
-coordinate will have it snipped of for example the input: ```1.0, 2.0, 3.0, 4.0, 5.0``` is read as a single coordinate (1.0, 2.0, 3.0)
+coordinate will have it snipped of, for example the input: ```1.0, 2.0, 3.0, 4.0, 5.0``` is read as a single coordinate (1.0, 2.0, 3.0)
 since the last one is incomplete
 
 ---
